@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>图书系统管理</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="MobileOptimized" content="320">
+    <!--Start Style -->
+    <link rel="stylesheet" type="text/css" href="../static/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/icofont.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <link rel="stylesheet" id="theme-change" type="text/css" href="">
+
+    <!-- 修改图片弹窗CSS -->
+    <link href="../droplistAsset/css/Member_ChangePwd.css" rel="stylesheet"/>
+    <link href="../droplistAsset/css/normalize.css" rel="stylesheet"/>
+
+
+    <!-- 弹窗CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="../registerAsset/css/registerStyle.css">
+    <link rel="shortcut icon" href="../registerAsset/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="../registerAsset/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="../registerAsset/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="../registerAsset/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../registerAsset/ico/apple-touch-icon-57-precomposed.png">
+
+    <!-- 预览CSS -->
+    <link rel="stylesheet" href="../yulanAsset/css/fontAwesome.css">
+    <link rel="stylesheet" href="../yulanAsset/css/light-box.css">
+
+    <!-- 下拉框1CSS -->
+    <link rel="stylesheet" href="../droplistAsset/css/select.css">
+    <!-- 下拉框2CSS -->
+</head>
+
+
+<body>
+<div class="loader">
+    <div class="spinner">
+        <img src="../static/picture/loader.gif" alt="">
+    </div>
+</div>
+
+<div class="page-wrapper">
+
+    <header class="header-wrapper main-header">
+        <div class="header-inner-wrapper">
+            <div class="logo-wrapper">
+                <a href="index.html" class="admin-logo">
+                    <img src="../image/zhenjiang.png" alt="">
+                </a>
+            </div>
+            <div class="header-right">
+
+                <div class="header-left">
+                    <div class="header-links">
+                        <a href="javascript:void(0);" class="toggle-btn">
+                            <span></span>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="header-controls">
+
+                    <div class="user-info-wrapper header-links">
+                        <a href="javascript:void(0);" class="user-info">
+                            <img src="../static/picture/user.jpg" alt="" class="user-img">
+                            <div class="blink-animation">
+                                <span class="blink-circle"></span>
+                                <span class="main-circle"></span>
+                            </div>
+                        </a>
+                        <div class="user-info-box">
+                            <div class="drop-down-header">
+                                <h4>[[*{session.adminUser.adminName}]]</h4>
+                            </div>
+                            <ul>
+
+                                <li>
+                                    <a id="logOutButton">
+                                        <i class="fas fa-sign-out-alt"></i>logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <aside class="sidebar-wrapper">
+        <div class="side-menu-wrap">
+            <ul class="main-menu">
+
+
+                <li>
+                    <a href="adminMain.html">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-users">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7"
+                                                                                                       r="4"></circle><path
+                                        d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path
+                                        d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </span>
+                        <span class="menu-text">用户管理
+                            </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-truck">
+                                    <rect x="1" y="3" width="15" height="13"></rect><polygon
+                                        points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5"
+                                                                                                    r="2.5"></circle><circle
+                                        cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                            </span>
+                        <span class="menu-text">图书管理
+                            </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="bookStyle.html">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-package">
+                                    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path
+                                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline
+                                        points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08"
+                                                                                                x2="12" y2="12"></line></svg>
+                            </span>
+                        <span class="menu-text">图书类别管理
+                            </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="borrowLog.html">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-layers"><polygon
+                                        points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline
+                                        points="2 17 12 22 22 17"></polyline><polyline
+                                        points="2 12 12 17 22 12"></polyline></svg>
+                            </span>
+                        <span class="menu-text">借阅记录
+                            </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <div class="page-wrapper">
+        <div class="main-content">
+
+            <div class="row">
+                <div class="colxl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-title-wrapper">
+                        <div class="page-title-box ad-title-box-use">
+                            <h4 id="testButton" class="page-title">图书管理</h4>
+                        </div>
+                        <div class="ad-breadcrumb">
+                            <ul>
+                                <span id="returnMsg" style="color: red"></span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li>
+                                    <div class="ad-user-btn">
+                                        <input id="search-type" class="form-control" type="text" list="typelist"
+                                               placeholder="类别...">
+                                        <datalist id="typelist">
+<!--                                            <option value="历史">历史</option>-->
+<!--                                            <option value="政治">政治</option>-->
+<!--                                            <option value="漫画">漫画</option>-->
+                                        </datalist>
+                                        <input type="hidden" id="hidden-type">
+                                        <input type="hidden" id="hidden-bookName">
+
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ad-user-btn">
+                                        <input id="search-bookName" class="form-control" type="text"
+                                               placeholder="搜索书名...">
+                                        <svg id="searchButton" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                             viewbox="0 0 56.966 56.966" style="cursor:pointer;">
+                                            <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
+												s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
+												c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
+												s-17-7.626-17-17S14.61,6,23.984,6z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="add-group">
+
+                                        <a class="ad-btn launch-modal" href="#"
+                                           data-modal-id="modal-register">新增书籍</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card table-card">
+                        <div class="card-header pb-0">
+                            <h4 style="float: left;">图书管理列表</h4>
+
+
+                            <div id="demo2" class="selectPickerWrapper" style="float: right; margin: 0">
+                                <select class="hidden" multiple="multiple">
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>15</option>
+                                    <option>20</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-holder">
+                                <div class="table-responsive">
+                                    <table class="table table-styled mb-0">
+                                        <thead>
+                                        <tr>
+
+                                            <th>编号</th>
+                                            <th>图片</th>
+                                            <th>书名</th>
+                                            <th>作者</th>
+                                            <th>出版日期</th>
+                                            <th>类别</th>
+                                            <th>价格</th>
+                                            <th>库存</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="book-body">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="text-right" id="pageBody">
+                                <div id="rightItem" class="page-item" style="float: right">
+                                    <a class="page-link " id="right"
+                                       style="height:38px;width:38px;line-height:23px; border-radius: 3px;"
+                                       href="javascript:void(0); "><i class="fas fa-chevron-right "></i></a>
+                                </div>
+                                <nav class="d-inline-block" style="float: right">
+                                    <ul id="pageUl" class="pagination mb-0 ">
+                                        <li class="page-item active "><a class="page-link " href="javascript:void(0); ">1</a>
+                                        </li>
+                                        <li class="page-item ">
+                                            <a class="page-link " href="javascript:void(0); ">2</a>
+                                        </li>
+                                        <li class="page-item "><a class="page-link " href="javascript:void(0); ">3</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <div id="leftItem" class="page-item" style="float: right">
+                                    <!---->
+                                    <a id="left" class="page-link style1" href="javascript:void(0);"><i
+                                            class="fas fa-chevron-left"></i></a>
+                                </div>
+                                <div style="float: right; margin-right: 10px; margin-top: 10px;" id="totalDiv">
+                                    <label>总</label><label id="totalNum"></label><label>条记录</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="slide-setting-box">
+    <div class="slide-setting-holder">
+        <div class="setting-box-head">
+            <h4>General Settings</h4>
+            <a href="javascript:void(0);" class="close-btn">Close</a>
+        </div>
+        <div class="setting-box-body">
+            <div class="p-4">
+                <div class="switch-settings">
+                    <div class="d-flex mb-3">
+                        <span class="mr-auto fs-15">Notifications</span>
+                        <div class="checkbox checkbox-toggle">
+                            <input id="checkbox55" type="checkbox">
+                            <label for="checkbox55"></label>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <span class="mr-auto fs-15">Show your emails</span>
+                        <div class="checkbox checkbox-toggle">
+                            <input id="checkbox56" type="checkbox">
+                            <label for="checkbox56"></label>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <span class="mr-auto fs-15">Show Task statistics</span>
+                        <div class="checkbox checkbox-toggle">
+                            <input id="checkbox57" type="checkbox">
+                            <label for="checkbox57"></label>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <span class="mr-auto fs-15">Show recent activity</span>
+                        <div class="checkbox checkbox-toggle">
+                            <input id="checkbox58" type="checkbox">
+                            <label for="checkbox58"></label>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <span class="mr-auto fs-15">System Logs</span>
+                        <div class="checkbox checkbox-toggle">
+                            <input id="checkbox59" type="checkbox">
+                            <label for="checkbox59"></label>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <span class="mr-auto fs-15">Error Reporting</span>
+                        <div class="checkbox checkbox-toggle">
+                            <input id="checkbox60" type="checkbox">
+                            <label for="checkbox60"></label>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <span class="mr-auto fs-15">Show your status to all</span>
+                        <div class="checkbox checkbox-toggle">
+                            <input id="checkbox61" type="checkbox">
+                            <label for="checkbox61"></label>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <span class="mr-auto fs-15">Keep up to date</span>
+                        <div class="checkbox checkbox-toggle">
+                            <input id="checkbox62" type="checkbox">
+                            <label for="checkbox62"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-3 border-top border-bottom">
+            <h5 class="border-bottom-0 mb-0">Overview</h5>
+        </div>
+        <div class="p-4">
+            <div class="progress-wrapper">
+                <div class="mb-3">
+                    <p class="mb-2">Achieves<span class="float-right text-muted font-weight-normal">95%</span></p>
+                    <div class="progress h-1">
+                        <div class="progress-bar bg-primary col-3" role="progressbar" aria-valuenow="25"
+                             aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-wrapper pt-2">
+                <div class="mb-3">
+                    <p class="mb-2">Projects<span class="float-right text-muted font-weight-normal">65%</span></p>
+                    <div class="progress">
+                        <div class="progress-bar bg-secondary col-3" role="progressbar" aria-valuenow="25"
+                             aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-wrapper pt-2">
+                <div class="mb-3">
+                    <p class="mb-2">Earnings<span class="float-right text-muted font-weight-normal">55%</span></p>
+                    <div class="progress">
+                        <div class="progress-bar bg-success col-8" role="progressbar" aria-valuenow="25"
+                             aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-wrapper pt-2">
+                <div class="mb-3">
+                    <p class="mb-2">Balance<span class="float-right text-muted font-weight-normal">50%</span></p>
+                    <div class="progress h-1">
+                        <div class="progress-bar bg-warning w-50 " role="progressbar"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-wrapper pt-2">
+                <div class="mb-3">
+                    <p class="mb-2">Total Profits<span class="float-right text-muted font-weight-normal">80%</span></p>
+                    <div class="progress">
+                        <div class="progress-bar bg-info col-6" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                             aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-wrapper pt-2">
+                <div class="mb-3">
+                    <p class="mb-2">Total Likes<span class="float-right text-muted font-weight-normal">75%</span></p>
+                    <div class="progress h-1">
+                        <div class="progress-bar bg-teal w-75" role="progressbar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="style-switcher">
+    <div>
+        <ul class="colors">
+            <li>
+                <p class='colorchange' id='color'>
+                </p>
+            </li>
+            <li>
+                <p class='colorchange' id='color2'>
+                </p>
+            </li>
+            <li>
+                <p class='colorchange' id='color3'>
+                </p>
+            </li>
+            <li>
+                <p class='colorchange' id='color4'>
+                </p>
+            </li>
+            <li>
+                <p class='colorchange' id='color5'>
+                </p>
+            </li>
+            <li>
+                <p class='colorchange' style="background-color:aliceblue" id='style'>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div class="bottom">
+        <a href="" class="settings">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
+
+
+<!--新增书籍弹窗 -->
+<div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="modal-register-label"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-register-label">新增书籍</h3>
+                <button id="closeInsertUserModal" type="button" class="close" style="padding: 0.7rem;" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+<!--                <form role="form" action="" method="post" class="registration-form">-->
+                    <div class="form-group">
+                        <label class="sr-only" for="form-first-name">书名</label>
+                        <input type="text" name="form-first-name" placeholder="图书书名"
+                               class="form-first-name form-control" id="insert-bookName">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-last-name">作者</label>
+                        <input type="text" name="form-last-name" placeholder="图书作者"
+                               class="form-last-name form-control" id="insert-author">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-last-name">类别</label>
+                        <input type="text" name="form-last-name" placeholder="图书类别"
+                               class="form-last-name form-control" id="insert-category">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-last-name">价格</label>
+                        <input type="text" name="form-last-name" placeholder="图书价格"
+                               class="form-last-name form-control" id="insert-price">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-last-name">库存</label>
+                        <input type="text" name="form-last-name" placeholder="图书库存量"
+                               class="form-last-name form-control" id="insert-stockNum">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-last-name">ISBN</label>
+                        <input type="text" name="form-last-name" placeholder="图书ISBN号"
+                               class="form-last-name form-control" id="insert-ISBN">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-about-yourself">简介</label>
+                        <textarea name="form-about-yourself" placeholder="图书简介"
+                                  class="form-about-yourself form-control" id="insert-profile"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label style="color: #555555">上传图片</label>
+                        <a class="imgClick" href="#" data-modal-id="modal-register2">
+                            <img src="../image/uploadimg.png" width="100" alt="">
+                        </a>
+                    </div>
+                    <button id="saveButton" class="registerBtn">添加</button>
+<!--                </form>-->
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--修改图书弹窗 -->
+<div class="modal fade" id="modal-register1" tabindex="-1" role="dialog" aria-labelledby="modal-register-label"
+     aria-hidden="true">
+    <input type="hidden" id="update_id">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-register-label1">修改图书信息</h3>
+                <button id="closeUpdateModalButton" type="button" class="close" style="padding: 0.7rem;" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+<!--                <form role="form" action="" method="post" class="registration-form">-->
+                    <div class="form-group">
+                        <label class="sr-only" for="update-BookName">书名</label>
+                        <input id="update-BookName" type="text" name="form-first-name" placeholder="BookName..."
+                               class="form-first-name form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="update-author">作者</label>
+                        <input id="update-author" type="text" name="form-last-name" placeholder="author..."
+                               class="form-last-name form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="update-category">类别</label>
+                        <input id="update-category" type="text" name="form-last-name" placeholder="category..."
+                               class="form-last-name form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="update-price">价格</label>
+                        <input id="update-price" type="text" name="form-last-name" placeholder="price..."
+                               class="form-last-name form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="update-stockNum">库存</label>
+                        <input id="update-stockNum" type="text" name="form-last-name" placeholder="stock..."
+                               class="form-last-name form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="update-ISBN">ISBN</label>
+                        <input id="update-ISBN" type="text" name="form-last-name" placeholder="ISBN..."
+                               class="form-last-name form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="form-about-yourself">简介</label>
+                        <textarea id="update-profile" name="form-about-yourself" placeholder="profile..."
+                                  class="form-about-yourself form-control" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label style="color: #555555">上传图片</label>
+                        <a class="imgClick" href="#" data-modal-id="modal-register2">
+                            <img src="../image/uploadimg.png" width="100" alt="">
+                        </a>
+                    </div>
+                    <button id="updateButton" class="registerBtn">修改</button>
+<!--                </form>-->
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-register2" tabindex="-1" role="dialog" aria-labelledby="modal-register-label"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--修改图片弹窗 -->
+            <div class="member_create_content_up" style="background-color: rgb(248,248,248); margin-top: 102px;">
+                <div class="member_content_body">
+                    <div class="member_create_line"
+                         style="height: auto; border-bottom: 1px solid #e3e9ed; margin-left: 20px;">
+                        <span style="color: #878787; font-size: 16px;">更换图片</span>
+                    </div>
+                    <div class="member_create_line" style="height: auto; margin-left: 20px; width: 60%">
+                        <div id="clipArea"
+                             style="user-select: none; overflow: hidden; position: relative; width: 350px; height: 350px; border: solid 1px #c0c0c0"></div>
+                    </div>
+                    <div class="member_create_line"
+                         style="height: auto; margin-left: 90px; width: 10%; color: #878787; margin-bottom: 10px;">
+                        预览
+                    </div>
+                    <div class="member_create_line"
+                         style="height: auto; margin-left: 55px; width: 10%; margin-bottom: 1px;">
+                        <div id="imgPic2"
+                             style="width: 100px; height: 100px; background-color: #666666; background-size: contain; border: solid 1px #c0c0c0"></div>
+                    </div>
+                    <div class="member_create_line"
+                         style="height: auto; margin-left: 82px; font-size: 12px; width: 10%; color: #878787;">
+                        100*100
+                    </div>
+                    <div class="member_create_line"
+                         style="height: auto; margin-left: 80px; width: 10%; margin-bottom: 1px;">
+                        <div id="view" style="width: 50px; height: 50px; border: solid 1px #c0c0c0"></div>
+                    </div>
+                    <div class="member_create_line"
+                         style="height: auto; margin-left: 88px; font-size: 12px; width: 10%; color: #878787;">
+                        50*50
+                    </div>
+
+                    <div class="member_create_line" style="height: auto; margin-left: 20px;">
+                        <div class="member_create_btn" style="float: right; width: 195px; font-size: 12px;">
+                            <div id="btn_ok" class="member_create_button">上传</div>
+                            <input type="file" style="display: none;" id="file"/>
+                            <div id="clipBtn" class="member_create_button">截取</div>
+                            <input type="hidden" name="PicCun" id="PicCun">
+                            <input id="uploadButton" class="member_create_button" style="height: 35px;" value="确定"/>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/custom.js"></script>
+<!--弹窗JS -->
+<script src="../registerAsset/js/jquery.backstretch.min.js"></script>
+<script src="../registerAsset/js/scripts.js"></script>
+
+
+<!--下拉JS -->
+<script src="../droplistAsset/js/select.js"></script>
+
+<script>
+    $(function () {
+        $("#demo2").mySelect();
+    });
+</script>
+
+<!--预览 -->
+<script src="../yulanAsset/js/plugins.js"></script>
+
+
+<!--修改图片弹窗 -->
+<script src="../droplistAsset/js/iscroll-zoom.js"></script>
+<script src="../droplistAsset/js/hammer.js"></script>
+<script src="../droplistAsset/js/jquery.photoClip.js"></script>
+<script>
+    $("#clipArea").photoClip({
+        width: 200,
+        height: 200,
+        file: "#file",
+        view: "#view",
+        ok: "#clipBtn",
+        loadStart: function () {
+            console.log("照片读取中");
+        },
+        loadComplete: function () {
+            console.log("照片读取完成");
+        },
+        clipFinish: function (dataURL) {
+            console.log(dataURL);
+        }
+    });
+</script>
+<script src="../droplistAsset/js/yy.js"></script>
+<script src="../static/js/changeColor.js"></script>
+<script src="../customizeJs/bookManage.js"></script>
+<script src="../customizeJs/fenye.js"></script>
+</body>
+
+</html>

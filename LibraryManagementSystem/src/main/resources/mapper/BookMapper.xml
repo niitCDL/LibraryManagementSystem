@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.niit.library.mapper.BookMapper">
+
+    <resultMap id="BaseResultMap" type="com.niit.library.domain.Book">
+        <id property="id" column="id" jdbcType="BIGINT"/>
+        <result property="bookName" column="book_name" jdbcType="VARCHAR"/>
+        <result property="categoryId" column="category_id" jdbcType="BIGINT"/>
+        <result property="stockNum" column="stock_num" jdbcType="INTEGER"/>
+        <result property="author" column="author" jdbcType="VARCHAR"/>
+        <result property="publicationDate" column="publication_date" jdbcType="TIMESTAMP"/>
+        <result property="profile" column="profile" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="DECIMAL"/>
+        <result property="isbn" column="isbn" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,book_name,category_id,
+        stock_num,author,publication_date,
+        profile,price,isbn,
+        img_path
+    </sql>
+
+    <select id="selectPageVo" resultMap="BaseResultMap">
+        select b.id,
+        b.book_name,
+        b.category_id,
+        b.stock_num,
+        b.author,
+        b.publication_date,
+        b.profile,
+        b.price,
+        b.isbn from book b
+        <where>
+            <if test="book.bookName!=null and book.bookName!=''">
+                b.book_name like '%' #{book.bookName} '%'
+            </if>
+            <if test="book.categoryId!=null and book.categoryId!=''">
+                and b.category_id = #{book.categoryId}
+            </if>
+        </where>
+        order by b.publication_date desc
+    </select>
+
+
+    <select id="selectPageVo2" resultType="com.niit.library.domain.Book">
+        select log.id as logId, b.book_name as bookName, b.author, k.category as categoryName,b.id
+        from borrowlog log
+        join book b
+        ON log.book_id = b.id
+        join `user` u
+        ON log.user_id = u.id
+        join kind k
+        ON b.category_id = k.id
+        <where>
+            log.action = '还书' and log.user_id = #{book.uid}
+            <if test="book.bookName!=null and book.bookName!=''">
+                and b.book_name like '%' #{book.bookName} '%'
+            </if>
+            <if test="book.categoryName!=null and book.categoryName!=''">
+                and k.category = #{book.categoryName}
+            </if>
+        </where>
+        order by log.record_time desc
+    </select>
+    <select id="selectPageVo3" resultType="com.niit.library.domain.Book">
+        select bor.id, b.book_name as bookName, b.author, k.category as categoryName, bor.end_date as publicationDate
+        from borrow bor
+                 join book b
+                      ON bor.book_id = b.id
+                 join `user` u
+                      ON bor.user_id = u.id
+                 join kind k
+                      ON b.category_id = k.id
+    </select>
+
+    <select id="countReturnBook" resultType="java.lang.Integer">
+        select count(*)
+        from borrowlog log
+        join book b
+        ON log.book_id = b.id
+        join `user` u
+        ON log.user_id = u.id
+        join kind k
+        ON b.category_id = k.id
+        <where>
+            log.action = '还书' and log.user_id = #{book.uid}
+            <if test="book.bookName!=null and book.bookName!=''">
+                and b.book_name like '%' #{book.bookName} '%'
+            </if>
+            <if test="book.categoryName!=null and book.categoryName!=''">
+                and k.category = #{book.categoryName}
+            </if>
+        </where>
+        order by log.record_time desc
+    </select>
+
+    <select id="selectPageVo4" resultType="com.niit.library.domain.Book">
+        select log.id as logId, b.book_name as bookName, b.author, k.category as categoryName,b.id
+        from borrowlog log
+        join book b
+        ON log.book_id = b.id
+        join `user` u
+        ON log.user_id = u.id
+        join kind k
+        ON b.category_id = k.id
+        <where>
+            log.action = '还书' and log.user_id = #{book.uid}
+            <if test="book.bookName!=null and book.bookName!=''">
+                and b.book_name like '%' #{book.bookName} '%'
+            </if>
+            <if test="book.categoryName!=null and book.categoryName!=''">
+                and k.category = #{book.categoryName}
+            </if>
+        </where>
+        order by log.record_time desc
+        limit #{pageNo},#{pageSize}
+    </select>
+
+</mapper>

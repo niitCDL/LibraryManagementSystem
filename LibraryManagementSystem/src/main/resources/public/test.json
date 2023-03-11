@@ -1,0 +1,64 @@
+{
+  "total": 62,
+  "pages": 13,
+  "dataList": [
+    {
+      "id": 1600760909817556994,
+      "bookName": "老人与海4",
+      "categoryId": 2,
+      "stockNum": 10,
+      "author": "zs4",
+      "publicationDate": "2022-12-08T07:55:16.000+00:00",
+      "profile": "一本好书",
+      "price": 30,
+      "isbn": 9787300245850,
+      "imgPath": null
+    },
+    {
+      "id": 1600760909817556995,
+      "bookName": "老人与海5",
+      "categoryId": 2,
+      "stockNum": 10,
+      "author": "zs5",
+      "publicationDate": "2022-12-08T07:55:16.000+00:00",
+      "profile": "一本好书",
+      "price": 30,
+      "isbn": 9787300245850,
+      "imgPath": null
+    },
+    {
+      "id": 1600760909817556996,
+      "bookName": "老人与海6",
+      "categoryId": 2,
+      "stockNum": 10,
+      "author": "zs6",
+      "publicationDate": "2022-12-08T07:55:16.000+00:00",
+      "profile": "一本好书",
+      "price": 30,
+      "isbn": 9787300245850,
+      "imgPath": null
+    },
+    {
+      "id": 1600760909880471553,
+      "bookName": "老人与海7",
+      "categoryId": 2,
+      "stockNum": 10,
+      "author": "zs7",
+      "publicationDate": "2022-12-08T07:55:16.000+00:00",
+      "profile": "一本好书",
+      "price": 30,
+      "isbn": 9787300245850,
+      "imgPath": null
+    },
+    {
+      "id": 1600760909880471554,
+      "bookName": "老人与海8",
+      "categoryId": 2,
+      "stockNum": 10,
+      "author": "zs8",
+      "publicationDate": "2022-12-08T07:55:16.000+00:00",
+      "profile": "一本好书",
+      "price": 30,
+      "isbn": 9787300245850,
+      "imgPath": null
+    }

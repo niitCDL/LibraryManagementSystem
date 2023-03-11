@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>镇江图书馆</title>
+    <link rel="stylesheet" href="css/loginstyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <script src="Scripts/jquery-1.8.2.js"></script>
+</head>
+<body>
+<div class="cotn_principal" style="background-image:url(/image/bbanner1.jpg)">
+    <div class="cont_centrar">
+        <div class="cont_login">
+            <div class="cont_info_log_sign_up">
+                <div class="col_md_login">
+                    <div class="cont_ba_opcitiy">
+                        <h2>登录</h2>
+                        <p>图书馆登录</p>
+                        <button id="ui_login" class="btn_login" onClick="cambiar_login()">登录</button>
+                        <br>
+                    </div>
+                </div>
+                <div class="col_md_sign_up">
+                    <div class="cont_ba_opcitiy">
+                        <h2>注册</h2>
+                        <p>图书馆注册</p>
+                        <button id="sign_up_Button" class="btn_sign_up" onClick="cambiar_sign_up()">注册</button>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_back_info">
+                <div class="cont_img_back_grey"><img src="/image/night.jpg" alt=""/></div>
+            </div>
+            <div class="cont_forms">
+                <div class="cont_img_back_"><img src="/image/night.jpg" alt=""/></div>
+                <div class="cont_form_login"><a href="#" onClick="ocultar_login_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
+                    <h2>登 录</h2>
+                    <input id="userName" type="text" placeholder="用户名"/>
+                    <input id="password" type="password" placeholder="密码"/>
+                    <br>
+                    <span id="loginMsg" style="color: red"></span>
+                    <br>
+                    <button id="loginButton" class="btn_login">登录</button>
+                </div>
+                <div class="cont_form_sign_up"><a href="#" onClick="ocultar_login_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
+                    <h2>注 册</h2>
+                    <input id="reg_userName" type="text" placeholder="用户名"/>
+                    <input id="reg_password" type="password" placeholder="密码"/>
+                    <input id="reg_confirmPassword" type="password" placeholder="确认密码"/>
+                    <input id="reg_address" type="text" placeholder="地址"/>
+                    <br>
+                    <span id="register_msg" style="color: red"></span>
+                    <br>
+                    <button id="registerButton" class="btn_sign_up">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/index.js"></script>
+
+<script src="customizeJs/login.js"></script>
+
+</body>
+</html>
+

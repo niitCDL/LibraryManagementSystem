@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8"/>
+    <title>镇江图书馆</title>
+    <!--    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />-->
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/icofont.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <link href="../css/BoolList.css" rel="stylesheet"/>
+    <script src="../Scripts/jquery-1.8.2.min.js"></script>
+    <meta name="viewport" content="width=device-width"/>
+    <script>
+        $(function () {
+            $(".jian").toggle(function () {
+                $(this).css("background-image", "url(../image/加.png)")
+                $(".type").hide();
+            }, function () {
+                $(this).css("background-image", "url(../image/减.png)")
+                $(".type").show();
+            })
+        })
+    </script>
+</head>
+<body>
+<div id="top">
+    <input id="hidden-uid" type="hidden" th:value="${session.user.id}">
+    <div class="welcome" style="font-size: 25px;font-weight: bold">欢迎[[*{session.user.userName}]]来到镇江图书馆！</div>
+
+    <!--        <div class="kuang">-->
+    <!--            <img src="http://www.sklib.cn/images/per-entry.png" height="34" class="img2">-->
+    <!--            <a href="~/Library/Login1"><div class="login">登录</div></a>-->
+    <!--        </div>-->
+
+    <div class="kuang">
+        <img src="http://www.sklib.cn/images/per-entry.png" height="34" class="img2">
+        <a href="personalCenter.html">
+            <div class="login">个人中心</div>
+        </a>
+    </div>
+
+</div>
+<div id="main">
+    <img src="../image/zhenjiang.png" class="zhejiang" width="350" height="95">
+    <div class="rdtj">
+        <div class="select">
+            <input type="text" class="text1" name="txt" id="search-bookName"><input type="button" id="searchButton" value="搜索" class="selectbtn" style="cursor: pointer">
+            <input type="hidden" id="hidden-bookName">
+        </div>
+
+        <a href="#">
+            <div class="rd">
+                热点推荐:<span class="y">一带一路</span><span class="y">宏观经济</span><span
+                    class="y">甲骨文</span><span class="y">群体事件</span><span class="y">公共安全</span><span
+                    class="y">比较文学</span>
+                <span class="y">遗址</span><span class="y">智库</span>
+            </div>
+        </a>
+    </div>
+</div>
+<div id="back">
+    <div class="dh">
+        <span style="color: #7A7A7A">当前位置：</span><span style="color: #2E3E4E">首页</span>
+
+    </div>
+    <div class="main">
+        <div class="main-left">
+            <h4 class="h4">全部资源分类</h4>
+            <div class="zyfl">
+                <div class="jian"></div>
+                <a href="#" id="allButton">
+                    <div class="qb">全部</div>
+                </a>
+                <input type="hidden" id="hidden-cid">
+                <div id="bookTypeBody">
+                    <a href="#">
+                        <div class="type">类别名称.....</div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="main-right">
+            <div id="bookBody">
+                <div class="nei">
+                    <a href="detail.html">
+                        <img src="../image/lryh.png" style="background-size:contain;" width="128" class="im"
+                             height="160">
+                    </a>
+                    <div class="right">
+                        <a href="detail.html">
+                            <div style="float: left; font-weight: 600; margin-top: 17px; font-size: 20px; width: 100%;">
+                                BookName
+                            </div>
+                        </a>
+                        <div class="zi">作者：</div>
+                        <div class="zi">出版日期：</div>
+                        <div class="zi" style="text-indent: 2em; line-height: 1.5em;">简介:</div>
+                        <div class="zi">关键词:<input type="submit" class="btn1" value="借阅" style="margin-top:0px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="text-right" id="pageBody">
+                <div id="rightItem" class="page-item" style="float: right">
+                    <a class="page-link " id="right"
+                       style="height:38px;width:38px;line-height:23px; border-radius: 3px;"
+                       href="javascript:void(0); "><i class="fas fa-chevron-right "></i></a>
+                </div>
+                <nav class="d-inline-block" style="float: right">
+                    <ul id="pageUl" class="pagination mb-0 ">
+                        <li class="page-item active "><a class="page-link " href="javascript:void(0); ">1</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link " href="javascript:void(0); ">2</a>
+                        </li>
+                        <li class="page-item "><a class="page-link " href="javascript:void(0); ">3</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div id="leftItem" class="page-item" style="float: right">
+                    <!---->
+                    <a id="left" class="page-link style1" href="javascript:void(0);"><i
+                            class="fas fa-chevron-left"></i></a>
+                </div>
+                <div style="float: right; margin-right: 10px; margin-top: 10px;" id="totalDiv">
+                    <label>总</label><label id="totalNum"></label><label>条记录</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../customizeJs/bookindex.js"></script>
+<script src="../customizeJs/fenye.js"></script>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.niit.library.mapper.BorrowlogMapper">
+
+    <resultMap id="BaseResultMap" type="com.niit.library.domain.Borrowlog">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="bookId" column="book_id" jdbcType="BIGINT"/>
+            <result property="recordTime" column="record_time" jdbcType="TIMESTAMP"/>
+            <result property="action" column="action" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,book_id,
+        record_time,action
+    </sql>
+
+    <select id="selectPageVo" resultType="com.niit.library.domain.Borrowlog">
+        select log.id as id,b.book_name as bookName,u.user_name as userName,log.record_time,log.action
+        from borrowlog log
+                 join book b
+                      on log.book_id = b.id
+                 join `user` u
+                      on log.user_id = u.id
+        <where>
+            <if test="log.bookName!=null and log.bookName!=''">
+                b.book_name like '%' #{log.bookName} '%'
+            </if>
+
+            <if test="log.action!=null and log.action!=''">
+                and log.action like '%' #{log.action} '%'
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

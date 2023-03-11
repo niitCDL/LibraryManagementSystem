@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.niit.library.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.niit.library.domain.User">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="joinDate" column="join_date" jdbcType="TIMESTAMP"/>
+            <result property="noReturn" column="no_return" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_name,password,
+        address,join_date,no_return,
+        img
+    </sql>
+</mapper>

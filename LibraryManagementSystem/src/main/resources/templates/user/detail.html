@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>镇江图书馆</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/icofont.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<!--    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />-->
+    <link href="/css/BoolList.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.8.2.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <script>
+        $(function () {
+            $(".jian").toggle(function () {
+                $(this).css("background-image", "url(../image/加.png)")
+                $(".type").hide();
+            }, function () {
+                $(this).css("background-image", "url(../image/减.png)")
+                $(".type").show();
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="top">
+        <div class="welcome" style="font-size: 25px;font-weight: bold">欢迎[[*{session.user.userName}]]来到镇江图书馆！</div>
+
+<!--        <div class="kuang">-->
+<!--            <img src="http://www.sklib.cn/images/per-entry.png" height="34" class="img2">-->
+<!--            <a href="~/Library/Login1"><div class="login">登录</div></a>-->
+<!--        </div>-->
+
+        <div class="kuang">
+            <img src="http://www.sklib.cn/images/per-entry.png" height="34" class="img2">
+            <a href="/user/personalCenter.html"><div class="login">[[*{session.user.userName}]]</div></a>
+        </div>
+
+    </div>
+    <div id="main">
+        <img src="/image/zhenjiang.png" class="zhejiang" width="350" height="95">
+        <div class="rdtj">
+            <div class="select">
+                <input type="text" class="text1" name="txt"><input type="submit" value="搜索" class="selectbtn">
+            </div>
+
+            <a href="#">
+                <div class="rd">
+                    热点推荐:<span class="y">一带一路</span><span class="y">宏观经济</span><span class="y">甲骨文</span><span class="y">群体事件</span><span class="y">公共安全</span><span class="y">比较文学</span>
+                    <span class="y">遗址</span><span class="y">智库</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id="back" style="height:755px;">
+        <div class="dh">
+            <span style="color: #7A7A7A">当前位置：</span><a href="/user/index.html" style="color:#2E3E4E">首页</a>>
+            <label>图书详细 </label>
+
+        </div>
+        <div class="main">
+            <div class="main-left">
+                <h4 class="h4">全部资源分类</h4>
+                <div class="zyfl">
+                    <div class="jian"></div>
+                    <a href=""><div class="qb">全部</div></a>
+
+                    <a href="#"><div class="type">[[${book.categoryName}]]</div></a>
+
+                </div>
+            </div>
+            <div class="main-right">
+                <div class="nei1">
+                    <img src="/image/lryh.png" width="179" class="im" style="box-shadow: 4px 4px 6px #ccc; border: 1px solid #efefed; margin-right: 30px;" height="230">
+                    <div class="right1">
+                        <div style="float: left; margin-top: 17px; font-size: 24px; color: #444444; width: 100%;"></div>
+                        <div class="zi" style="width: 200px;" >作者：[[${book.author}]]</div>
+                        <div class="zi1">ISBN：[[${book.isbn}]]</div>
+                        <div class="zi" style="width: 70%;">所属分类：[[${book.categoryName}]]</div>
+                        <div class="zi1">出版日期：[[${book.publicationDateStr}]] </div>
+                        <div class="zi">关键词：[[${book.bookName}]]</div>
+                        <div class="jy">
+                            <div class="dj">定价：</div>
+                            <div class="price">￥ [[${book.price}]]</div>
+                            <input id="bid" type="hidden" th:value="${book.id}">
+                            <input id="uid" type="hidden" th:value="${session.user.id}">
+                            <input id="borrowButton" type="button" class="btn1" value="借阅">
+                        </div>
+                    </div>
+                </div>
+                <div class="nei2">
+                    <div class="ding">
+                        <div class="jj">简介</div>
+                    </div>
+                    <div class="content">
+                        [[${book.profile}]]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/customizeJs/bookdetail.js"></script>
+</html>

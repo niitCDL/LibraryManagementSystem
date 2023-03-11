@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+#    url: jdbc:mysql://172.16.3.39:3306/library?useSSL=false
+    url: jdbc:mysql://localhost:3306/library?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+  application:
+    name: library
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    cache: false
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 8080
+
